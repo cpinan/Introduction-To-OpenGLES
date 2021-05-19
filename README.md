@@ -1,1 +1,1 @@
-# Introduction-To-OpenGLES
+# Introduction to OpenGLES
