@@ -14,6 +14,6 @@ class MyGLSurfaceView(
     init {
         setEGLContextClientVersion(3)
         setRenderer(renderer)
-        renderMode = RENDERMODE_WHEN_DIRTY
+        renderMode = RENDERMODE_CONTINUOUSLY
     }
 }
