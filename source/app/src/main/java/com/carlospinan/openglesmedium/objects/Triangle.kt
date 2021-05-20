@@ -3,6 +3,9 @@ package com.carlospinan.openglesmedium.objects
 import android.content.Context
 import android.opengl.GLES32
 import com.carlospinan.openglesmedium.R
+import com.carlospinan.openglesmedium.common.A_VERTEX_POSITION
+import com.carlospinan.openglesmedium.common.FLOAT_BYTES
+import com.carlospinan.openglesmedium.common.U_MVP_MATRIX
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
@@ -12,8 +15,6 @@ import java.nio.FloatBuffer
  */
 private const val COORDS_PER_VERTEX = 3
 private const val VERTEX_STRIDE = COORDS_PER_VERTEX * FLOAT_BYTES
-private const val A_VERTEX_POSITION = "aVertexPosition"
-private const val U_MVP_MATRIX = "uMVPMatrix"
 
 private val triangleVertex = floatArrayOf(
     -1F, -1F, 0F,
@@ -26,7 +27,7 @@ class Triangle(
 ) {
 
     private var program =
-        createProgram(context, R.raw.triangle_vertex_shader, R.raw.triangle_fragment_shader)
+        createProgram(context, R.raw.common_vertex_shader, R.raw.common_fragment_shader)
 
     private val vertexBuffer: FloatBuffer =
         ByteBuffer

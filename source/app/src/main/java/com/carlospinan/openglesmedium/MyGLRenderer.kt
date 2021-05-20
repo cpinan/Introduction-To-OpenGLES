@@ -4,6 +4,8 @@ import android.content.Context
 import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import com.carlospinan.openglesmedium.objects.SquareV1
+import com.carlospinan.openglesmedium.objects.SquareV2
 import com.carlospinan.openglesmedium.objects.Triangle
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
@@ -16,6 +18,8 @@ class MyGLRenderer(
 ) : GLSurfaceView.Renderer {
 
     private lateinit var triangle: Triangle
+    private lateinit var squareV1: SquareV1
+    private lateinit var squareV2: SquareV2
 
     private val projectionMatrix = FloatArray(16)
 
@@ -29,6 +33,8 @@ class MyGLRenderer(
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         triangle = Triangle(context)
+        squareV1 = SquareV1(context)
+        squareV2 = SquareV2(context)
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
@@ -113,6 +119,8 @@ class MyGLRenderer(
             0
         )
 
-        triangle.draw(modelViewProjectionMatrix)
+        // triangle.draw(modelViewProjectionMatrix)
+        // squareV1.draw(modelViewProjectionMatrix)
+        squareV2.draw(modelViewProjectionMatrix)
     }
 }
