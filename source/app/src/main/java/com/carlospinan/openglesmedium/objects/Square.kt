@@ -3,10 +3,7 @@ package com.carlospinan.openglesmedium.objects
 import android.content.Context
 import android.opengl.GLES32
 import com.carlospinan.openglesmedium.R
-import com.carlospinan.openglesmedium.common.A_VERTEX_POSITION
-import com.carlospinan.openglesmedium.common.FLOAT_BYTES
-import com.carlospinan.openglesmedium.common.INT_BYTES
-import com.carlospinan.openglesmedium.common.U_MVP_MATRIX
+import com.carlospinan.openglesmedium.common.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer

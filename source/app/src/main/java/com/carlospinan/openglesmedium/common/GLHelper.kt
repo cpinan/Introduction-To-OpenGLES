@@ -1,4 +1,4 @@
-package com.carlospinan.openglesmedium.objects
+package com.carlospinan.openglesmedium.common
 
 import android.content.Context
 import android.opengl.GLES32
