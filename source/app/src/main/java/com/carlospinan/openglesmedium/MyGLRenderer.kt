@@ -4,6 +4,7 @@ import android.content.Context
 import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import com.carlospinan.openglesmedium.objects.Cube
 import com.carlospinan.openglesmedium.objects.SquareV1
 import com.carlospinan.openglesmedium.objects.SquareV2
 import com.carlospinan.openglesmedium.objects.Triangle
@@ -20,6 +21,7 @@ class MyGLRenderer(
     private lateinit var triangle: Triangle
     private lateinit var squareV1: SquareV1
     private lateinit var squareV2: SquareV2
+    private lateinit var cube: Cube
 
     private val projectionMatrix = FloatArray(16)
 
@@ -29,12 +31,27 @@ class MyGLRenderer(
     private val modelMatrix = FloatArray(16)
 
     private var z = -1F
+    private var angle = 0F
     private var decrease = true
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         triangle = Triangle(context)
         squareV1 = SquareV1(context)
         squareV2 = SquareV2(context)
+        cube = Cube(context)
+
+        // GLES32.glEnable(GLES32.GL_CULL_FACE)
+        // GLES32.glCullFace(GLES32.GL_BACK)
+        // GLES32.glFrontFace(GLES32.GL_CCW)
+
+        // Set up the depth buffer
+        // GLES32.glClearDepthf(1F)
+
+        // Enable depth test (so, it will not look through the surfaces)
+        // GLES32.glEnable(GLES32.GL_DEPTH_TEST)
+
+        // Indicate what type of depth test
+        // GLES32.glDepthFunc(GLES32.GL_LEQUAL)
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
@@ -98,7 +115,21 @@ class MyGLRenderer(
             0,
             0F,
             0F,
-            z
+            -5F
+        )
+
+        val rotationMatrix = FloatArray(16)
+        Matrix.setIdentityM(rotationMatrix, 0)
+        Matrix.rotateM(rotationMatrix, 0, angle++, 1F, 1F, 0F)
+        angle %= 360
+
+        Matrix.multiplyMM(
+            modelMatrix,
+            0,
+            modelMatrix,
+            0,
+            rotationMatrix,
+            0
         )
 
         Matrix.multiplyMM(
@@ -121,6 +152,7 @@ class MyGLRenderer(
 
         // triangle.draw(modelViewProjectionMatrix)
         // squareV1.draw(modelViewProjectionMatrix)
-        squareV2.draw(modelViewProjectionMatrix)
+        // squareV2.draw(modelViewProjectionMatrix)
+        cube.draw(modelViewProjectionMatrix)
     }
 }

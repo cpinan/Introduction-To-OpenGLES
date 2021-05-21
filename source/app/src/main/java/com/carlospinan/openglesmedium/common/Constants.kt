@@ -7,4 +7,5 @@ const val FLOAT_BYTES = 4
 const val INT_BYTES = 2
 
 const val A_VERTEX_POSITION = "aVertexPosition"
+const val A_VERTEX_COLOR = "aVertexColor"
 const val U_MVP_MATRIX = "uMVPMatrix"
